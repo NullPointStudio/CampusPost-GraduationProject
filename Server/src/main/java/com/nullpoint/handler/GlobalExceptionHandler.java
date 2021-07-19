@@ -1,4 +1,4 @@
-package com.nullpoint.controller;
+package com.nullpoint.handler;
 
 import com.nullpoint.exception.TokenException;
 import com.nullpoint.utils.MVUtils;
