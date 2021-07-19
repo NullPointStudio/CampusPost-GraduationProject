@@ -1,6 +1,8 @@
 package com.nullpoint.domain;
 
-public class Account {
+import java.io.Serializable;
+
+public class Account implements Serializable {
     Integer account_id;
     String account_username;
     String account_password;

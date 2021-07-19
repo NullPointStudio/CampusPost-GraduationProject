@@ -6,6 +6,9 @@ import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
+/**
+ * Account持久层接口
+ */
 @Mapper
 public interface AccountDao {
 

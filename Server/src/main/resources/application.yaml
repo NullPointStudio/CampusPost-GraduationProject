@@ -4,7 +4,7 @@ mybatis:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/vue_study?serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/campuspost?serverTimezone=UTC
     username: root
     password: 174878
   #两个设置让自定义ExceptionHandler生效

@@ -1,6 +1,6 @@
 package com.nullpoint.controller;
 
-import com.nullpoint.service.impl.AccountService;
+import com.nullpoint.service.AccountService;
 import com.nullpoint.utils.CommonUtil;
 import com.nullpoint.utils.MVUtils;
 import com.nullpoint.utils.Md5TokenGenerator;

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '@/components/Login'
 import Manage from '@/components/Manage'
+import ManageMenu from '@/components/ManageMenu'
 
 Vue.use(VueRouter)
 
@@ -17,7 +18,14 @@ const routes = [
   },
   {
     path: '/manage',
-    component: Manage
+    component: Manage,
+    children: [
+      {
+        path: '/manageMenu',
+        component: ManageMenu,
+        children: []
+      }
+    ]
   }
 ]
 
