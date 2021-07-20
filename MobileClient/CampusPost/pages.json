@@ -1,4 +1,7 @@
 {
+	"easycom": {
+		 "^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
 			"path": "pages/index/index",
@@ -9,14 +12,14 @@
 				}
 			}
 		},{
-			"path": "pages/PersonCenter/PersonCenter",
-			"style": {
-				"navigationBarTitleText": "Mine"
-			}
-		},{
 			"path": "pages/MyClass/MyClass",
 			"style": {
 				"navigationBarTitleText": "我的课堂"
+			}
+		},{
+			"path": "pages/PersonCenter/PersonCenter",
+			"style": {
+				"navigationBarTitleText": "Mine"
 			}
 		},{
 			"path": "pages/Login/Login",

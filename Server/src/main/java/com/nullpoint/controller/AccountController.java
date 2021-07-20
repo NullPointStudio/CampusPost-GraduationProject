@@ -40,12 +40,23 @@ public class AccountController {
         return token;
     }
 
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public ModelAndView login(@RequestBody Map<String,Object> map){
+    @RequestMapping(value = "/loginByPhone",method = RequestMethod.POST)
+    public ModelAndView loginByPhone(@RequestBody Map<String,Object> map){
         ModelAndView mv = MVUtils.getJsonMV();
-        String userId = (String) map.get("username");
+        String phone = (String) map.get("phone");
         String password = (String) map.get("password");
-        doLogin(mv, userId, password);
+        Integer userId = accountService.loginByPhone(phone,password);
+        if (userId != null && !userId.equals(0) && userId != 0){
+            String token = setRedisData(phone,password);
+            mv.addObject("code",200);
+            mv.addObject("msg","登录成功");
+            mv.addObject("userId",userId);
+            mv.addObject("token",token);
+        }else {
+            mv.addObject("code",400);
+            mv.addObject("msg","用户名不存在或密码错误");
+        }
+
         return mv;
     }
 
@@ -65,9 +76,10 @@ public class AccountController {
 
     private void doLogin(ModelAndView mv, String userId, String password) {
         if (accountService.login(userId,password)){
-            String token = setRedisData(userId, password);
+            String token = setRedisData(userId,password);
             mv.addObject("code",200);
             mv.addObject("msg","登录成功");
+            mv.addObject("userId",userId);
             mv.addObject("token",token);
         }else {
             mv.addObject("code",400);

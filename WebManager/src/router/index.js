@@ -6,6 +6,7 @@ import ManageMenu from '@/components/ManageMenu'
 import StudentManager from '@/components/manage/StudentManager'
 import TeacherManager from '@/components/manage/TeacherManager'
 import ViewsNum from '@/components/manage/ViewsNum'
+import ClassManager from '@/components/manage/ClassManager'
 
 Vue.use(VueRouter)
 
@@ -32,6 +33,9 @@ const routes = [
         }, {
           path: '/studentManager',
           component: StudentManager
+        }, {
+          path: '/classManager',
+          component: ClassManager
         }, {
           path: '/viewsNum',
           component: ViewsNum

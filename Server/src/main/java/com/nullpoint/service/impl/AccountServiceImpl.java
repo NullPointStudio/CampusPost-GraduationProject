@@ -24,4 +24,23 @@ public class AccountServiceImpl implements com.nullpoint.service.AccountService 
         if (account==null) return false;
         return account.getAccount_password().equals(password);
     }
+
+    /**
+     * 通过手机号查询用户
+     * 判断密码是否一致
+     * 若一致则返回 AccountId
+     * 否则返回 0
+     * @param phone
+     * @param password
+     * @return
+     */
+    @Override
+    public Integer loginByPhone(String phone, String password) {
+        Account account = accountDao.findByPhone(phone);
+        if (account==null) return 0;
+        if (account.getAccount_password().equals(password)){
+            return account.getAccount_id();
+        }
+        return 0;
+    }
 }

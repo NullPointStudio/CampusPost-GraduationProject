@@ -3,10 +3,10 @@
   <div>
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item>首页</el-breadcrumb-item>
-      <el-breadcrumb-item>用户管理</el-breadcrumb-item>
-      <el-breadcrumb-item>教师列表</el-breadcrumb-item>
+      <el-breadcrumb-item>教室管理</el-breadcrumb-item>
+      <el-breadcrumb-item>教室列表</el-breadcrumb-item>
     </el-breadcrumb>
-    <!-- card -->
+  <!-- card -->
     <el-card class="box-card">
       <el-row :gutter="20">
         <el-col :span="7">
@@ -16,7 +16,7 @@
           </el-input>
         </el-col>
         <el-col :span="4">
-          <el-button type="primary">添加学生</el-button>
+          <el-button type="primary">新增教室</el-button>
         </el-col>
       </el-row>
     </el-card>
@@ -25,7 +25,22 @@
 
 <script>
 export default {
-  name: 'StudentManager'
+  name: 'ClassManager',
+  data() {
+    return {
+      queryInfo: {
+        pageNum: 1,
+        pageSize: 2
+      }
+    }
+  },
+  created () {
+  },
+  methods: {
+    getClassList () {
+      this.$http.get('/getCollegeClass', { params: {} })
+    }
+  }
 }
 </script>
 

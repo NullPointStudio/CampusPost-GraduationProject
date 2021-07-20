@@ -9,7 +9,7 @@
   "compileType": "miniprogram",
   "libVersion": "",
   "appid": "touristappid",
-  "projectname": "CampusPost",
+  "projectname": "uview-uni-cli",
   "condition": {
     "search": {
       "current": -1,

@@ -8,4 +8,6 @@ public interface AccountService {
     List<Account> findAll();
 
     boolean login(String account_id,String password);
+
+    Integer loginByPhone(String phone,String password);
 }

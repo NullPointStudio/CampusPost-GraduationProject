@@ -7,3 +7,6 @@ html,body,#app{
     font-family: pangmen;
     src:url('../font/pangmen.ttf');
 }
+.el-breadcrumb{
+    margin-bottom: 25px;
+}

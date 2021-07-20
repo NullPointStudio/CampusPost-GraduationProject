@@ -1,4 +1,11 @@
 
+#username{
+	font-size: 40rpx;
+	font-weight: bold;
+}
+#classname{
+	font-size: 24rpx;
+}
 image {
 	height: 120rpx;
 	width: 120rpx;
@@ -13,5 +20,23 @@ image {
 	height: auto;
 	background-color: #FFFFCC;
 	text-align: center;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+}
+.exit_btn {
+	padding: 20rpx;
+}
+#mine_titles {
+	width: 50%;
+	height: 100%;
+	text-align: center;
+	margin-top: 5%;
+}
+#mine_avatar {
+	width: 50%;
 }
 

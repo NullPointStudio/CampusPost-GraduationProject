@@ -7,7 +7,7 @@
         background-color="#3c3f41"
         text-color="#fff"
         active-text-color="#409eff"
-      router>
+        router>
         <el-submenu :index="item.menuId+''" v-for="item in secondMenuList" :key="item.menuId">
           <template slot="title">
             <i :class="item.menuIco"></i>
@@ -22,7 +22,9 @@
       </el-menu>
     </el-aside>
     <el-container>
-      <el-main><router-view/></el-main>
+      <el-main>
+        <router-view/>
+      </el-main>
       <!--  底部区域  -->
       <el-footer>
         <div id="copyright">
@@ -41,7 +43,7 @@ export default {
   name: 'ManageMenu',
   data () {
     return {
-      secondMenuIndex: '303',
+      secondMenuIndex: '',
       secondMenuList: []
     }
   },
@@ -52,6 +54,10 @@ export default {
       console.log(res)
       if (res.code !== 200) {
         return this.$message.error(res.msg)
+      }
+      if (res.data[0].childs[0] !== null && res.data[0].childs[0].menuId !== 0) {
+        this.secondMenuIndex = res.data[0].childs[0].menuId + ''
+        await this.$router.push(res.data[0].childs[0].path)
       }
       this.secondMenuList = res.data
     }
@@ -104,6 +110,7 @@ export default {
   padding: 0;
   margin: 0;
 }
+
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
   min-height: 400px;
