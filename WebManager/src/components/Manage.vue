@@ -34,12 +34,12 @@ export default {
       fit: 'cover',
       firstMenuList: [],
       titleMenuIndex: '101',
-      LeftMenuIndex: '201',
       isRouterAlive: true
     }
   },
   created () {
     this.getFirstMenu()
+    this.$router.push('/manageMenu?parentId=' + this.titleMenuIndex)
   },
   methods: {
     signOut () {
@@ -67,6 +67,7 @@ export default {
       this.reload()
     },
     reload () {
+      // this.$route.query.parentId = '101'
       this.isRouterAlive = false
       this.$nextTick(() => (this.isRouterAlive = true))
     }

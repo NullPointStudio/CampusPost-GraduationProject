@@ -1,0 +1,41 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/PersonCenter/PersonCenter",
+    "pages/MyClass/MyClass",
+    "pages/Login/Login"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#FFFFCC",
+    "backgroundColor": "#F8F8F8",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "主页",
+        "iconPath": "static/tabBar/icon/home.png",
+        "selectedIconPath": "static/tabBar/icon/home-selected.png"
+      },
+      {
+        "pagePath": "pages/MyClass/MyClass",
+        "text": "我的课堂",
+        "iconPath": "static/tabBar/icon/book.png",
+        "selectedIconPath": "static/tabBar/icon/book-selected.png"
+      },
+      {
+        "pagePath": "pages/PersonCenter/PersonCenter",
+        "text": "Mine",
+        "iconPath": "static/tabBar/icon/user.png",
+        "selectedIconPath": "static/tabBar/icon/user-selected.png"
+      }
+    ],
+    "selectedColor": "#FFCCCC",
+    "blurEffect": "light"
+  },
+  "usingComponents": {}
+}

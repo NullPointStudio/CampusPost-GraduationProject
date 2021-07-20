@@ -7,6 +7,7 @@ public class AdminThirdMenu implements Serializable {
     String menuName;
     String menuIco;
     Integer parentId;
+    String path;
 
     public Integer getMenuId() {
         return menuId;
@@ -38,5 +39,13 @@ public class AdminThirdMenu implements Serializable {
 
     public void setParentId(Integer parentId) {
         this.parentId = parentId;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 }

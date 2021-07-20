@@ -60,6 +60,7 @@ public class AdminMenuController {
                 child.put("menuName",adminThirdMenu.getMenuName());
                 child.put("menuIco",adminThirdMenu.getMenuIco());
                 child.put("parentId",adminThirdMenu.getParentId());
+                child.put("path",adminThirdMenu.getPath());
                 childs.add(child);
             }
             map.put("childs",childs);

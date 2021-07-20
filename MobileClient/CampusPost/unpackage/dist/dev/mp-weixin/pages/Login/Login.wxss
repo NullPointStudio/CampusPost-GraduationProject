@@ -1,0 +1,9 @@
+
+view {
+	padding: 10rpx;
+}
+uni-input {
+	border: #000000 1rpx solid;
+	font-size: 64rpx;
+}
+

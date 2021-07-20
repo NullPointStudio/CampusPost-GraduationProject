@@ -1,0 +1,1 @@
+<scroll-view><view class="user_div _div"><image mode="aspectFill" src="../../static/tabBar/userImg.jpg" data-event-opts="{{[['tap',[['loginClick',['$event']]]]]}}" bindtap="__e"></image><view class="_div"><text>UserName</text></view></view></scroll-view>

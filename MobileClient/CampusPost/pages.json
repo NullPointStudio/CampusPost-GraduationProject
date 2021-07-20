@@ -1,0 +1,59 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "首页",
+				"navigationBarShadow": {
+					"colorType": "grey"
+				}
+			}
+		},{
+			"path": "pages/PersonCenter/PersonCenter",
+			"style": {
+				"navigationBarTitleText": "Mine"
+			}
+		},{
+			"path": "pages/MyClass/MyClass",
+			"style": {
+				"navigationBarTitleText": "我的课堂"
+			}
+		},{
+			"path": "pages/Login/Login",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#FFFFCC",
+		"backgroundColor": "#F8F8F8",
+		"enablePullDownRefresh": true
+	},
+	"tabBar": {
+		"list": [
+			{
+				"pagePath":"pages/index/index",
+				"text":"主页",
+				"iconPath":"static/tabBar/icon/home.png",
+				"selectedIconPath":"static/tabBar/icon/home-selected.png"
+			},
+			{
+				"pagePath": "pages/MyClass/MyClass",
+				"text":"我的课堂",
+				"iconPath":"static/tabBar/icon/book.png",
+				"selectedIconPath":"static/tabBar/icon/book-selected.png"
+			},
+			{
+				"pagePath": "pages/PersonCenter/PersonCenter",
+				"text":"Mine",
+				"iconPath":"static/tabBar/icon/user.png",
+				"selectedIconPath":"static/tabBar/icon/user-selected.png"
+			}
+		],
+		"selectedColor": "#FFCCCC",
+		"blurEffect": "light"
+	}
+}

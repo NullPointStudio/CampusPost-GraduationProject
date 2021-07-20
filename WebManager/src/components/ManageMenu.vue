@@ -2,26 +2,27 @@
   <el-container class="manage_menu_container">
     <el-aside width="200px">
       <el-menu
-        default-active="2"
+        class="el-menu-vertical-demo"
+        :default-active="secondMenuIndex"
         background-color="#3c3f41"
         text-color="#fff"
-        active-text-color="#ffd04b">
+        active-text-color="#409eff"
+      router>
         <el-submenu :index="item.menuId+''" v-for="item in secondMenuList" :key="item.menuId">
           <template slot="title">
             <i :class="item.menuIco"></i>
             <span>{{ item.menuName }}</span>
           </template>
-          <el-menu-item :index="child.menuId+''" v-for="child in item.childs" :key="child.menuId">
+          <el-menu-item
+            :index="child.menuId+''" v-for="child in item.childs" :key="child.menuId" :route="{ path: child.path}">
             <i :class="child.menuIco"></i>
-            {{
-              child.menuName
-            }}
+            {{ child.menuName }}
           </el-menu-item>
         </el-submenu>
       </el-menu>
     </el-aside>
     <el-container>
-      <el-main>Main</el-main>
+      <el-main><router-view/></el-main>
       <!--  底部区域  -->
       <el-footer>
         <div id="copyright">
@@ -35,13 +36,12 @@
 <script>
 export default {
   created () {
-    console.log('ManageMenu:' + this.$route.query.parentId)
     this.getSecondMenu()
   },
   name: 'ManageMenu',
   data () {
     return {
-      secondMenuIndex: '201',
+      secondMenuIndex: '303',
       secondMenuList: []
     }
   },
@@ -78,7 +78,8 @@ export default {
 .el-footer {
   background-color: #2b2b2c;
 }
-#copyright{
+
+#copyright {
   height: 100%;
   width: 100%;
   font-family: pangmen;
@@ -103,5 +104,8 @@ export default {
   padding: 0;
   margin: 0;
 }
-
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 400px;
+}
 </style>

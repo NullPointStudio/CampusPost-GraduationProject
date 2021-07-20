@@ -3,6 +3,9 @@ import VueRouter from 'vue-router'
 import Login from '@/components/Login'
 import Manage from '@/components/Manage'
 import ManageMenu from '@/components/ManageMenu'
+import StudentManager from '@/components/manage/StudentManager'
+import TeacherManager from '@/components/manage/TeacherManager'
+import ViewsNum from '@/components/manage/ViewsNum'
 
 Vue.use(VueRouter)
 
@@ -23,7 +26,17 @@ const routes = [
       {
         path: '/manageMenu',
         component: ManageMenu,
-        children: []
+        children: [{
+          path: '/teacherManager',
+          component: TeacherManager
+        }, {
+          path: '/studentManager',
+          component: StudentManager
+        }, {
+          path: '/viewsNum',
+          component: ViewsNum
+        }
+        ]
       }
     ]
   }
@@ -32,6 +45,10 @@ const routes = [
 const router = new VueRouter({
   routes
 })
+const VueRouterPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push (to) {
+  return VueRouterPush.call(this, to).catch(err => err)
+}
 
 // 挂在路由导航守卫
 router.beforeEach((to, from, next) => {
@@ -43,7 +60,7 @@ router.beforeEach((to, from, next) => {
   // 获取token
   const tokenStr = window.sessionStorage.getItem('token')
   if (!tokenStr) {
-    alert('请先登录')
+    this.$message.error('请先登录')
     return next('/login')
   }
   next()
