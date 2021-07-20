@@ -1,7 +1,5 @@
 package com.nullpoint.controller;
 
-import com.nullpoint.dao.AdminSecondMenuDao;
-import com.nullpoint.dao.AdminThirdMenuDao;
 import com.nullpoint.domain.AdminSecondMenu;
 import com.nullpoint.domain.AdminThirdMenu;
 import com.nullpoint.service.AdminFirstMenuService;
@@ -46,7 +44,7 @@ public class AdminMenuController {
     public ModelAndView getSecondMenu(@RequestParam String parentId){
         ModelAndView mv = MVUtils.getJsonMV();
         List<Map<String,Object>> list = new ArrayList<>();
-        Map<String,Object> map = null;
+        Map<String,Object> map;
         for (AdminSecondMenu adminSecondMenu : adminSecondMenuService.findByParentId(parentId)) {
             map = new HashMap<>();
             map.put("menuId",adminSecondMenu.getMenuId());
