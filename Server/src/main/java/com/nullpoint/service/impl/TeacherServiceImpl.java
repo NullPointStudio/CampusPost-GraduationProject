@@ -1,5 +1,6 @@
 package com.nullpoint.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.nullpoint.dao.AccountDao;
 import com.nullpoint.dao.TeacherDao;
 import com.nullpoint.domain.Account;
@@ -33,5 +34,11 @@ public class TeacherServiceImpl implements TeacherService {
         Account account = accountDao.findByPhone(phone);
         int n = teacherDao.addTeacher(account.getAccount_id(),name,name,sex,"",select_college,phone);
         if (n==0) throw new Exception("添加失败");
+    }
+
+    @Override
+    public List<Teacher> findAllPages(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        return teacherDao.findAll();
     }
 }

@@ -19,6 +19,41 @@
           <el-button type="primary" @click="addDialogVisible = true">添加教师</el-button>
         </el-col>
       </el-row>
+      <el-table
+        :data="teacherList"
+        border
+        style="width: 922px">
+        <!-- 索引列 -->
+        <el-table-column type="index" label="#" width="80"/>
+        <el-table-column prop="account_id" label="账号Id" width="100"></el-table-column>
+        <el-table-column prop="turename" label="姓名" width="100"></el-table-column>
+        <el-table-column prop="sex" label="性别" width="100"></el-table-column>
+        <el-table-column prop="college_id" label="所属二级学院名称" width="200">
+          <template slot-scope="scope">
+            <span>
+                {{ scope.row.college_id | formduty }}
+            </span>
+          </template>
+        </el-table-column>
+        <el-table-column prop="phone" label="手机号" width="150"></el-table-column>
+        <el-table-column
+          label="操作"
+        width="190">
+          <template slot-scope="scope">
+            <el-button @click="editTable(scope.row)" type="warning" size="mini" icon="el-icon-edit">编辑</el-button>
+            <el-button type="danger" size="mini" icon="el-icon-delete">删除</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+      <el-pagination
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="queryInfo.pageNum"
+        :page-sizes="[2, 8, 32, 64]"
+        :page-size="queryInfo.pageSize"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="total">
+      </el-pagination>
     </el-card>
     <!--  Dialog添加对话框  -->
     <el-dialog
@@ -61,6 +96,9 @@
 <script>
 export default {
   name: 'TeacherManager',
+  created () {
+    this.getTeacherList()
+  },
   data () {
     return {
       addDialogVisible: false,
@@ -113,34 +151,89 @@ export default {
           value: 6,
           label: '会计与金融学院'
         }
-      ]
-
+      ],
+      queryInfo: {
+        pageNum: 1,
+        // pageSize: 8
+        pageSize: 2
+      },
+      teacherList: [],
+      total: 0
+    }
+  },
+  filters: {
+    formduty(val) {
+      switch (val) {
+        case 1:
+          return '电子与信息学院'
+        case 2:
+          return '经济与贸易学院'
+        case 3:
+          return '世博艺术与传媒学院'
+        case 4:
+          return '建筑工程与管理学院'
+        case 5:
+          return '电商与物流学院'
+        case 6:
+          return '会计与金融学院'
+        default:
+          return val
+      }
     }
   },
   methods: {
+    async getTeacherList () {
+      const { data: res } = await this.$http.get('/teacher/getTeacherList', { params: this.queryInfo })
+      console.log(res)
+      if (res.code === 200) {
+        this.teacherList = res.pageInfo.list
+        this.total = res.pageInfo.total
+        this.pageSize = res.pageInfo.pageSize
+        console.log(this.teacherList)
+      } else {
+        this.$message.error('获取教师列表失败')
+      }
+    },
     // 当dialog关闭的时候出发的操作
     addDialogClose () {
       this.select_college = 1
-      this.sex_radio = '男'
+      this.sex = '男'
       this.$refs.teacherInfoFormRef.resetFields()
     },
     // 添加教师
     addTeacher () {
       this.$refs.teacherInfoFormRef.validate(async valid => {
         if (!valid) return
-        const { data: res } = await this.$http.post('/account/adminLogin', this.teacherInfoForm)
+        const { data: res } = await this.$http.post('/teacher/addTeacherByAdmin', this.teacherInfoForm)
         if (res.code === 200) {
           this.$message.success('添加成功!')
+          this.addDialogVisible = false
         } else {
           this.$message.error('添加失败：' + res.msg)
         }
       })
-      this.addDialogVisible = false
+    },
+    // pageSize改变
+    handleSizeChange(newSize) {
+      this.queryInfo.pageSize = newSize
+      this.getTeacherList()
+    },
+    // 页码值改变
+    handleCurrentChange(newPage) {
+      this.queryInfo.pageNum = newPage
+      this.getTeacherList()
+    },
+    editTable(row) {
+      console.log(row)
     }
   }
 }
 </script>
 
 <style scoped>
-
+.el-table{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: #e2e2e2 1px solid;
+}
 </style>

@@ -8,4 +8,6 @@ public interface TeacherService {
     List<Teacher> findAll();
 
     void addAccountByPhone(String name, String phone, String sex, int select_college) throws Exception;
+
+    List<Teacher> findAllPages(int pageNum, int pageSize);
 }

@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Teacher implements Serializable {
     Integer id;
     Integer account_id;
-    String truename;
+    String turename;
     String username;
     String sex;
     String avatar;
@@ -36,12 +36,12 @@ public class Teacher implements Serializable {
         this.account_id = account_id;
     }
 
-    public String getTruename() {
-        return truename;
+    public String getTurename() {
+        return turename;
     }
 
-    public void setTruename(String truename) {
-        this.truename = truename;
+    public void setTurename(String turename) {
+        this.turename = turename;
     }
 
     public String getUsername() {

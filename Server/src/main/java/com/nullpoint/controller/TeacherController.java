@@ -1,13 +1,17 @@
 package com.nullpoint.controller;
 
+import com.github.pagehelper.PageInfo;
+import com.nullpoint.domain.Teacher;
 import com.nullpoint.service.AccountService;
 import com.nullpoint.service.TeacherService;
 import com.nullpoint.utils.MVUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
@@ -23,9 +27,14 @@ public class TeacherController {
     AccountService accountService;
 
     @RequestMapping(value = "getTeacherList",method = RequestMethod.GET)
-    public ModelAndView getTeacherList(){
+    public ModelAndView getTeacherList(@RequestParam(defaultValue = "1") int pageNum,
+                                       @RequestParam(defaultValue = "10") int pageSize,
+                                       Model model){
         ModelAndView mv = MVUtils.getJsonMV();
-        mv.addObject("data",teacherService.findAll());
+        PageInfo<Teacher> pageInfo = new PageInfo<>(teacherService.findAllPages(pageNum,pageSize));
+        mv.addObject("code",200);
+        mv.addObject("pageInfo",pageInfo);
+        mv.addObject("msg","查询成功");
         return mv;
     }
 
