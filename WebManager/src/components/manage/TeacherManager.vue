@@ -225,7 +225,7 @@ export default {
       queryInfo: {
         query: '',
         pageNum: 1,
-        pageSize: 2
+        pageSize: 8
       },
       teacherList: [],
       total: 0
@@ -258,7 +258,7 @@ export default {
         if (res.code === 200) {
           this.$message.success('添加成功!')
           this.addDialogVisible = false
-          this.getTeacherList()
+          await this.getTeacherList()
         } else {
           this.$message.error('添加失败：' + res.msg)
         }
@@ -304,7 +304,7 @@ export default {
       })
     },
     deleteTeacher (id) {
-      this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+      this.$confirm('此操作将永久删除该教师, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'

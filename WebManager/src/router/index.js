@@ -7,6 +7,8 @@ import StudentManager from '@/components/manage/StudentManager'
 import TeacherManager from '@/components/manage/TeacherManager'
 import ViewsNum from '@/components/manage/ViewsNum'
 import ClassManager from '@/components/manage/ClassManager'
+import DormitoryManager from '@/components/manage/DormitoryManager'
+import DormitoryDistribution from '@/components/manage/DormitoryDistribution'
 
 Vue.use(VueRouter)
 
@@ -36,6 +38,12 @@ const routes = [
         }, {
           path: '/classManager',
           component: ClassManager
+        }, {
+          path: '/dormitoryManager',
+          component: DormitoryManager
+        }, {
+          path: '/dormitoryDistribution',
+          component: DormitoryDistribution
         }, {
           path: '/viewsNum',
           component: ViewsNum
