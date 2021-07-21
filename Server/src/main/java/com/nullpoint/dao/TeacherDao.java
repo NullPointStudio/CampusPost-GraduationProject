@@ -1,10 +1,7 @@
 package com.nullpoint.dao;
 
 import com.nullpoint.domain.Teacher;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -22,4 +19,22 @@ public interface TeacherDao {
                    @Param("avatar") String s,
                    @Param("college_id") int select_college,
                    @Param("phone") String phone);
+
+    @Select("select * from teachers where turename like  concat('%',#{query},'%')")
+    List<Teacher> findAllByQuery(String query);
+
+    @Update("update teachers set turename = #{name},username = #{username},sex = #{sex},avatar = #{avatar},college_id = #{college_id},phone = #{phone} where account_id = #{id}")
+    int updateTeacherByAccountId(@Param("id") String id,
+                      @Param("name")String name,
+                      @Param("username")String username,
+                      @Param("sex")String sex,
+                      @Param("avatar")String avatar,
+                      @Param("college_id")Integer college_id,
+                      @Param("phone")String phone);
+
+    @Select("select * from teachers where account_id = #{id}")
+    Teacher findByAccountId(String id);
+
+    @Delete("delete from teachers where account_id = #{id}")
+    int deleteByAccountId(String id);
 }

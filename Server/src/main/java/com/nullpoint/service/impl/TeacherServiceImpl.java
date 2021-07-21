@@ -8,7 +8,6 @@ import com.nullpoint.domain.Teacher;
 import com.nullpoint.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -28,17 +27,39 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     @Transactional
-    public void addAccountByPhone(String name, String phone,String sex,int select_college) throws Exception {
-        int i = accountDao.addAccount(name,"123456",phone);
-        if (i==0) throw new Exception("添加失败");
+    public void addAccountByPhone(String name, String phone, String sex, int select_college) {
+        int i = accountDao.addAccount(name, "123456", phone);
+        if (i == 0) throw new RuntimeException("添加失败");
         Account account = accountDao.findByPhone(phone);
-        int n = teacherDao.addTeacher(account.getAccount_id(),name,name,sex,"",select_college,phone);
-        if (n==0) throw new Exception("添加失败");
+        int n = teacherDao.addTeacher(account.getAccount_id(), name, name, sex, "", select_college, phone);
+        if (n == 0) throw new RuntimeException("添加失败");
     }
 
     @Override
-    public List<Teacher> findAllPages(int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum,pageSize);
-        return teacherDao.findAll();
+    public List<Teacher> findAllPages(String query, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        return teacherDao.findAllByQuery(query);
+    }
+
+    @Override
+    @Transactional
+    public void editAccountByPhone(String id, String name, String phone, String sex, Integer college_id) {
+        Account account = accountDao.findById(id);
+        if (account == null) throw new RuntimeException("找不到此用户");
+        int i = accountDao.updateAccount(id, account.getAccount_username(), account.getAccount_password(), phone);
+        if (i == 0) throw new RuntimeException("修改失败");
+        Teacher teacher = teacherDao.findByAccountId(id);
+        if (teacher == null) throw new RuntimeException("找不到此教师");
+        int i2 = teacherDao.updateTeacherByAccountId(id, name, teacher.getUsername(), sex, teacher.getAvatar(), college_id, phone);
+        if (i2 == 0) throw new RuntimeException("修改失败");
+    }
+
+    @Override
+    @Transactional
+    public void deleteTeacher(String id) {
+        int i = teacherDao.deleteByAccountId(id);
+        if (i == 0) throw new RuntimeException("删除失败");
+        int i2 = accountDao.deleteById(id);
+        if (i2 == 0) throw new RuntimeException("删除失败");
     }
 }
