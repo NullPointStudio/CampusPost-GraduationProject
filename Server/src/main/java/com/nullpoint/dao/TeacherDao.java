@@ -37,4 +37,7 @@ public interface TeacherDao {
 
     @Delete("delete from teachers where account_id = #{id}")
     int deleteByAccountId(String id);
+
+    @Select("select * from teachers where college_id = #{college_id}")
+    List<Teacher> getTeacherByCollege(Integer college_id);
 }

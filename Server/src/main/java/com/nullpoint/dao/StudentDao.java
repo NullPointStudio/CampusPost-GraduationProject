@@ -21,7 +21,11 @@ public interface StudentDao {
                    @Param("college_id") int select_college,
                    @Param("phone") String phone);
 
-    @Select("select * from students where turename like  concat('%',#{query},'%')")
+    @Select("select * from students s " +
+            "LEFT JOIN dormitory d on s.dormitory_id = d.id" +
+            " LEFT JOIN college_classes cc on s.college_class_id = cc.class_id"+
+            " where s.turename like concat('%',#{query},'%')"+
+            " order by s.college_class_id,s.dormitory_id")
     List<Student> findAllByQuery(String query);
 
     @Update("update students set turename = #{name},username = #{username},sex = #{sex},avatar = #{avatar},college_id = #{college_id},phone = #{phone} where account_id = #{id}")
@@ -38,4 +42,7 @@ public interface StudentDao {
 
     @Delete("delete from students where account_id = #{id}")
     int deleteByAccountId(String id);
+
+    @Select("select * from students where college_class_id = #{class_id}")
+    List<Student> getClassStudentList(Integer class_id);
 }

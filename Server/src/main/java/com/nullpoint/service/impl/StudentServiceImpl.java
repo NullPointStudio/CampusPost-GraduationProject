@@ -65,4 +65,9 @@ public class StudentServiceImpl implements StudentService {
         int i2 = accountDao.deleteById(id);
         if (i2 == 0) throw new RuntimeException("删除失败");
     }
+
+    @Override
+    public List<Student> getClassStudentList(Integer class_id) {
+        return studentDao.getClassStudentList(class_id);
+    }
 }

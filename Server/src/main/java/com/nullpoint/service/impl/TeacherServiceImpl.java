@@ -62,4 +62,9 @@ public class TeacherServiceImpl implements TeacherService {
         int i2 = accountDao.deleteById(id);
         if (i2 == 0) throw new RuntimeException("删除失败");
     }
+
+    @Override
+    public List<Teacher> getTeacherByCollege(Integer college_id) {
+        return teacherDao.getTeacherByCollege(college_id);
+    }
 }

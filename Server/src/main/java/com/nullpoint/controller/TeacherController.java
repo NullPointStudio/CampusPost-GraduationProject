@@ -79,4 +79,15 @@ public class TeacherController {
         return mv;
     }
 
+    @RequestMapping(value = "getHeadTeacherList",method = RequestMethod.GET)
+    public ModelAndView getHeadTeacherList(@RequestParam Integer college_id){
+        ModelAndView mv = MVUtils.getJsonMV();
+        mv.addObject("data",teacherService.getTeacherByCollege(college_id));
+        mv.addObject("code",200);
+        mv.addObject("msg","success");
+        return mv;
+    }
+
+
+
 }

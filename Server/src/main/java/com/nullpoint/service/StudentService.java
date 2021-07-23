@@ -16,4 +16,6 @@ public interface StudentService {
     void editAccountByPhone(String id, String name, String phone, String sex, Integer college_id);
 
     void deleteStudent(String id);
+
+    List<Student> getClassStudentList(Integer class_id);
 }

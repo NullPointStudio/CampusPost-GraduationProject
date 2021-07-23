@@ -11,6 +11,42 @@ public class Student implements Serializable {
     String avatar;
     Integer college_id;
     String phone;
+    Integer dormitory_id;
+    String dormitory_name;
+    Integer college_class_id;
+    String class_name;
+
+    public Integer getCollege_class_id() {
+        return college_class_id;
+    }
+
+    public void setCollege_class_id(Integer college_class_id) {
+        this.college_class_id = college_class_id;
+    }
+
+    public String getClass_name() {
+        return class_name;
+    }
+
+    public void setClass_name(String class_name) {
+        this.class_name = class_name;
+    }
+
+    public Integer getDormitory_id() {
+        return dormitory_id;
+    }
+
+    public void setDormitory_id(Integer dormitory_id) {
+        this.dormitory_id = dormitory_id;
+    }
+
+    public String getDormitory_name() {
+        return dormitory_name;
+    }
+
+    public void setDormitory_name(String dormitory_name) {
+        this.dormitory_name = dormitory_name;
+    }
 
     public String getPhone() {
         return phone;

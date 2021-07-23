@@ -23,7 +23,7 @@
       <el-table
         :data="teacherList"
         border
-        style="width: 922px">
+        style="width: 1122px">
         <!-- 索引列 -->
         <el-table-column type="index" label="#" width="80"/>
         <el-table-column prop="account_id" label="账号Id" width="100"></el-table-column>
@@ -38,6 +38,8 @@
           </template>
         </el-table-column>
         <el-table-column prop="phone" label="手机号" width="150"></el-table-column>
+        <el-table-column prop="dormitory_name" label="宿舍" width="100"></el-table-column>
+        <el-table-column prop="class_name" label="班级" width="100"></el-table-column>
         <el-table-column
           label="操作"
           width="190">
@@ -234,7 +236,6 @@ export default {
   methods: {
     async getTeacherList () {
       const { data: res } = await this.$http.get('/student/getStudentList', { params: this.queryInfo })
-      console.log(res)
       if (res.code === 200) {
         this.teacherList = res.pageInfo.list
         this.total = res.pageInfo.total

@@ -78,5 +78,13 @@ public class StudentController {
         mv.addObject("msg","删除成功");
         return mv;
     }
+    @RequestMapping(value = "getClassStudentList",method = RequestMethod.GET)
+    public ModelAndView getClassStudentList(@RequestParam Integer class_id){
+        ModelAndView mv = MVUtils.getJsonMV();
+        mv.addObject("data",studentService.getClassStudentList(class_id));
+        mv.addObject("code",200);
+        mv.addObject("msg","success");
+        return mv;
+    }
 
 }

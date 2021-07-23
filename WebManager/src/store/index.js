@@ -7,7 +7,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 
   state: {
-    manageMenuParentId: '101'
+    manageMenuParentId: '101',
+    addStudentToDormitoryAction: 0
   },
 
   mutations: {}

@@ -15,4 +15,6 @@ public interface TeacherService {
     void editAccountByPhone(String id, String name, String phone, String sex, Integer college_id);
 
     void deleteTeacher(String id);
+
+    List<Teacher> getTeacherByCollege(Integer college_id);
 }
