@@ -45,4 +45,21 @@ public interface StudentDao {
 
     @Select("select * from students where college_class_id = #{class_id}")
     List<Student> getClassStudentList(Integer class_id);
+
+//    @Select("select * from students where college_class_id = #{class_id} and where account_id not in #{ids}")
+//    List<Student> getClassStudentListNotIn(@Param("class_id") Integer class_id,@Param("ids") List<Integer> ids);
+//
+    @Select("<script>" +
+            "select * from students where college_class_id = #{class_id} and account_id not in" +
+            "<foreach collection='ids' open='(' separator=',' close=')' item='id'>" +
+            "#{id}"+
+            "</foreach>"+
+            "</script>")
+    List<Student> getClassStudentListNotIn(@Param("class_id") Integer class_id,@Param("ids") List<Integer> ids);
+
+    @Select("select * from students where dormitory_id = #{dormitory_id}")
+    List<Student> getDormitoryStudentList(Integer dormitory_id);
+
+    @Update("update students set dormitory_id = #{dormitory_id} where account_id = #{account_id}")
+    void setDormitoryId(@Param("account_id") Integer account_id, @Param("dormitory_id") Integer i);
 }

@@ -70,4 +70,28 @@ public class StudentServiceImpl implements StudentService {
     public List<Student> getClassStudentList(Integer class_id) {
         return studentDao.getClassStudentList(class_id);
     }
+
+    @Override
+    public List<Student> getClassStudentListNotIn(Integer class_id, List<Integer> ids) {
+        return studentDao.getClassStudentListNotIn(class_id, ids);
+    }
+
+    @Override
+    public List<Student> getDormitoryStudentList(Integer dormitory_id) {
+        return studentDao.getDormitoryStudentList(dormitory_id);
+    }
+
+    @Override
+    public void changeDormitory(Integer dormitory_id, List<Integer> dropIds, List<Integer> addIds) {
+        if (dropIds.size() != 0) {
+            for (Integer account_id : dropIds) {
+                studentDao.setDormitoryId(account_id,0);
+            }
+        }
+        if (addIds.size() != 0){
+            for(Integer account_id : addIds){
+                studentDao.setDormitoryId(account_id,dormitory_id);
+            }
+        }
+    }
 }

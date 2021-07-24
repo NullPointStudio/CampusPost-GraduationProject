@@ -66,4 +66,19 @@ public class CollegeClassController {
         mv.addObject("msg","删除成功");
         return mv;
     }
+
+    /**
+     * 根据学院id获取各个学院的班级
+     * @param college_id
+     * @return
+     */
+    @RequestMapping(value = "getCollegeClass",method = RequestMethod.GET)
+    public ModelAndView getCollegeClass(@RequestParam Integer college_id){
+        ModelAndView mv = MVUtils.getJsonMV();
+        mv.addObject("code",200);
+        mv.addObject("msg","success");
+        mv.addObject("data",collegeClassService.getCollegeClassByCollegeId(college_id));
+        return mv;
+    }
+
 }

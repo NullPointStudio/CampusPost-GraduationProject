@@ -28,4 +28,7 @@ public interface CollegeClassDao {
 
     @Delete("delete from college_classes where class_id = #{id}")
     int deleteClass(Integer id);
+
+    @Select("select * from college_classes where college_id = #{college_id}")
+    List<CollegeClass> findAllByCollegeId(Integer college_id);
 }

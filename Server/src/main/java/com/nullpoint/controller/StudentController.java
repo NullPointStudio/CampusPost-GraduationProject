@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -87,4 +89,58 @@ public class StudentController {
         return mv;
     }
 
+    /**
+     * 用account_id作为已排除学生的Id，获取除排除学生外的所有该班级学生
+     * @param map
+     * @return
+     */
+    @RequestMapping(value = "getClassStudentListNotIn",method = RequestMethod.POST)
+    public ModelAndView getClassStudentListNotIn(@RequestBody Map<String,Object> map){
+        ModelAndView mv = MVUtils.getJsonMV();
+        Integer class_id = (Integer) map.get("class_id");
+        List<Integer> ids = (List<Integer>) map.get("ids");
+//        mv.addObject("data",ids);
+        mv.addObject("data",studentService.getClassStudentListNotIn(class_id,ids));
+        mv.addObject("code",200);
+        mv.addObject("msg","success");
+        return mv;
+    }
+
+    /**
+     * 根据宿舍Id获取宿舍学生
+     * @param dormitory_id
+     * @return
+     */
+    @RequestMapping(value = "getDormitoryStudentList",method = RequestMethod.GET)
+    public ModelAndView getDormitoryStudentList(@RequestParam Integer dormitory_id){
+        ModelAndView mv = MVUtils.getJsonMV();
+        mv.addObject("data",studentService.getDormitoryStudentList(dormitory_id));
+        mv.addObject("code",200);
+        mv.addObject("msg","success");
+        return mv;
+    }
+
+
+    /**
+     * 修改宿舍号
+     * dropIds 是从原有宿舍删除的ID
+     * addIds 是从其他地方添加的ID
+     * @param map
+     * @return
+     */
+    @RequestMapping(value = "changeDormitory",method = RequestMethod.POST)
+    public ModelAndView changeDormitory(@RequestBody Map<String,Object> map){
+        ModelAndView mv = MVUtils.getJsonMV();
+        Integer dormitory_id = (Integer) map.get("dormitory_id");
+        List<Integer> dropIds = (List<Integer>) map.get("dropIds");
+        List<Integer> addIds = (List<Integer>) map.get("addIds");
+        if (dropIds.size()==0&&addIds.size()==0){
+            mv.addObject("msg","不做修改");
+        }else {
+            studentService.changeDormitory(dormitory_id,dropIds,addIds);
+            mv.addObject("msg","修改成功");
+        }
+        mv.addObject("code",200);
+        return mv;
+    }
 }

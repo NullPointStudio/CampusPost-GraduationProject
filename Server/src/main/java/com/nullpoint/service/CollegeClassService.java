@@ -12,4 +12,6 @@ public interface CollegeClassService {
     void addClass(String name, Integer college_id, Integer headteacher_id);
 
     void deleteClass(Integer id);
+
+    List<CollegeClass> getCollegeClassByCollegeId(Integer college_id);
 }

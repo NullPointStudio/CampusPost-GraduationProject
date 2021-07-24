@@ -35,4 +35,9 @@ public class CollegeClassServiceImpl implements CollegeClassService {
     public void deleteClass(Integer id) {
         collegeClassDao.deleteClass(id);
     }
+
+    @Override
+    public List<CollegeClass> getCollegeClassByCollegeId(Integer college_id) {
+        return collegeClassDao.findAllByCollegeId(college_id);
+    }
 }

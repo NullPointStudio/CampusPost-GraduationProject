@@ -18,4 +18,10 @@ public interface StudentService {
     void deleteStudent(String id);
 
     List<Student> getClassStudentList(Integer class_id);
+
+    List<Student> getClassStudentListNotIn(Integer class_id, List<Integer> ids);
+
+    List<Student> getDormitoryStudentList(Integer dormitory_id);
+
+    void changeDormitory(Integer dormitory_id, List<Integer> dropIds, List<Integer> addIds);
 }
