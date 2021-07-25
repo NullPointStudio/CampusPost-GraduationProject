@@ -80,6 +80,12 @@ public class StudentController {
         mv.addObject("msg","删除成功");
         return mv;
     }
+
+    /**
+     * 根据教室Id获取教室学生
+     * @param class_id
+     * @return
+     */
     @RequestMapping(value = "getClassStudentList",method = RequestMethod.GET)
     public ModelAndView getClassStudentList(@RequestParam Integer class_id){
         ModelAndView mv = MVUtils.getJsonMV();
@@ -138,6 +144,73 @@ public class StudentController {
             mv.addObject("msg","不做修改");
         }else {
             studentService.changeDormitory(dormitory_id,dropIds,addIds);
+            mv.addObject("msg","修改成功");
+        }
+        mv.addObject("code",200);
+        return mv;
+    }
+
+    /**
+     * 根据学院Id获取学院没有分配班级的学生
+     * @param college_id
+     * @return
+     */
+    @RequestMapping(value = "getCollegeStudentList",method = RequestMethod.GET)
+    public ModelAndView getCollegeStudentList(@RequestParam Integer college_id){
+        ModelAndView mv = MVUtils.getJsonMV();
+        mv.addObject("data",studentService.getCollegeStudentList(college_id));
+        mv.addObject("code",200);
+        mv.addObject("msg","success");
+        return mv;
+    }
+
+    /**
+     * 根据AccountId获取学生信息
+     * @param account_id
+     * @return
+     */
+    @RequestMapping(value = "getStudentByAccountId",method = RequestMethod.GET)
+    public ModelAndView getStudentByAccountId(@RequestParam Integer account_id){
+        ModelAndView mv = MVUtils.getJsonMV();
+        mv.addObject("data",studentService.getStudentByAccountId(account_id));
+        mv.addObject("code",200);
+        mv.addObject("msg","success");
+        return mv;
+    }
+
+    /**
+     * 用account_id作为已排除学生的Id，获取除排除学生外的所有该班级学生
+     * @param map
+     * @return
+     */
+    @RequestMapping(value = "getCollegeStudentListNotIn",method = RequestMethod.POST)
+    public ModelAndView getCollegeStudentListNotIn(@RequestBody Map<String,Object> map){
+        ModelAndView mv = MVUtils.getJsonMV();
+        Integer college_id = (Integer) map.get("college_id");
+        List<Integer> ids = (List<Integer>) map.get("ids");
+        mv.addObject("data",studentService.getCollegeStudentListNotIn(college_id,ids));
+        mv.addObject("code",200);
+        mv.addObject("msg","success");
+        return mv;
+    }
+
+    /**
+     * 修改班级
+     * dropIds 是从原有班级删除的ID
+     * addIds 是从其他地方添加的ID
+     * @param map
+     * @return
+     */
+    @RequestMapping(value = "changeClass",method = RequestMethod.POST)
+    public ModelAndView changeClass(@RequestBody Map<String,Object> map){
+        ModelAndView mv = MVUtils.getJsonMV();
+        Integer class_id = (Integer) map.get("class_id");
+        List<Integer> dropIds = (List<Integer>) map.get("dropIds");
+        List<Integer> addIds = (List<Integer>) map.get("addIds");
+        if (dropIds.size()==0&&addIds.size()==0){
+            mv.addObject("msg","不做修改");
+        }else {
+            studentService.changeClass(class_id,dropIds,addIds);
             mv.addObject("msg","修改成功");
         }
         mv.addObject("code",200);

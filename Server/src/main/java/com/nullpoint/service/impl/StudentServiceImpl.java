@@ -52,7 +52,7 @@ public class StudentServiceImpl implements StudentService {
         int i = accountDao.updateAccount(id, account.getAccount_username(), account.getAccount_password(), phone);
         if (i == 0) throw new RuntimeException("修改失败");
         Student student = studentDao.findByAccountId(id);
-        if (student == null) throw new RuntimeException("找不到此教师");
+        if (student == null) throw new RuntimeException("找不到此学生");
         int i2 = studentDao.updateStudentByAccountId(id, name, student.getUsername(), sex, student.getAvatar(), college_id, phone);
         if (i2 == 0) throw new RuntimeException("修改失败");
     }
@@ -91,6 +91,35 @@ public class StudentServiceImpl implements StudentService {
         if (addIds.size() != 0){
             for(Integer account_id : addIds){
                 studentDao.setDormitoryId(account_id,dormitory_id);
+            }
+        }
+    }
+
+    @Override
+    public List<Student> getCollegeStudentList(Integer college_id) {
+        return studentDao.getCollegeStudentList(college_id);
+    }
+
+    @Override
+    public Student getStudentByAccountId(Integer account_id) {
+        return studentDao.findByAccountId(account_id+"");
+    }
+
+    @Override
+    public List<Student> getCollegeStudentListNotIn(Integer college_id, List<Integer> ids) {
+        return studentDao.getCollegeStudentListNotIn(college_id,ids);
+    }
+
+    @Override
+    public void changeClass(Integer class_id, List<Integer> dropIds, List<Integer> addIds) {
+        if (dropIds.size() != 0) {
+            for (Integer account_id : dropIds) {
+                studentDao.setClassId(account_id,null);
+            }
+        }
+        if (addIds.size() != 0){
+            for(Integer account_id : addIds){
+                studentDao.setClassId(account_id,class_id);
             }
         }
     }

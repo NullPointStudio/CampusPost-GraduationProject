@@ -24,4 +24,12 @@ public interface StudentService {
     List<Student> getDormitoryStudentList(Integer dormitory_id);
 
     void changeDormitory(Integer dormitory_id, List<Integer> dropIds, List<Integer> addIds);
+
+    List<Student> getCollegeStudentList(Integer college_id);
+
+    Student getStudentByAccountId(Integer account_id);
+
+    List<Student> getCollegeStudentListNotIn(Integer college_id, List<Integer> ids);
+
+    void changeClass(Integer class_id, List<Integer> dropIds, List<Integer> addIds);
 }

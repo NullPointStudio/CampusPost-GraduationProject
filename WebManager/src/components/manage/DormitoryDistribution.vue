@@ -73,7 +73,7 @@
       </div>
     </el-card>
     <el-dialog
-      title="修改学生信息"
+      title="添加学生信息"
       :visible.sync="addStuDialogVisible"
       width="30%"
       @close="dialogClose">
@@ -202,7 +202,7 @@ export default {
       }
       if (this.$store.state.addStudentToDormitoryAction === 1) {
         this.studentsTags = []
-        this.studentTagsIds = []
+        this.studentTagsIds = [0, 1]
         // 获取宿舍已有的学生
         this.getDormitoryStudents()
       }
@@ -293,6 +293,10 @@ export default {
       this.$message.success(res.msg)
       this.$store.state.addStudentToDormitoryAction = 0
       this.dormitoryInfoForm.dormitory_id = null
+      this.studentTagsIds = [0, 1]
+      this.addStudentIds = []
+      this.dropStudents = []
+      this.studentsList = []
     }
   }
 }

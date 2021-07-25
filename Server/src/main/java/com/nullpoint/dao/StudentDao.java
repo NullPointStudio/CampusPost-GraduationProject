@@ -25,7 +25,7 @@ public interface StudentDao {
             "LEFT JOIN dormitory d on s.dormitory_id = d.id" +
             " LEFT JOIN college_classes cc on s.college_class_id = cc.class_id"+
             " where s.turename like concat('%',#{query},'%')"+
-            " order by s.college_class_id,s.dormitory_id")
+            " order by s.college_id,s.college_class_id,s.dormitory_id")
     List<Student> findAllByQuery(String query);
 
     @Update("update students set turename = #{name},username = #{username},sex = #{sex},avatar = #{avatar},college_id = #{college_id},phone = #{phone} where account_id = #{id}")
@@ -62,4 +62,18 @@ public interface StudentDao {
 
     @Update("update students set dormitory_id = #{dormitory_id} where account_id = #{account_id}")
     void setDormitoryId(@Param("account_id") Integer account_id, @Param("dormitory_id") Integer i);
+
+    @Select("select * from students where college_id = #{college_id} and college_class_id is null")
+    List<Student> getCollegeStudentList(Integer college_id);
+
+    @Select("<script>" +
+            "select * from students where college_id = #{college_id} and college_class_id is null and account_id not in" +
+            "<foreach collection='ids' open='(' separator=',' close=')' item='id'>" +
+            "#{id}"+
+            "</foreach>"+
+            "</script>")
+    List<Student> getCollegeStudentListNotIn(@Param("college_id") Integer college_id, @Param("ids") List<Integer> ids);
+
+    @Update("update students set college_class_id = #{class_id} where account_id = #{account_id}")
+    void setClassId(@Param("account_id") Integer account_id, @Param("class_id") Integer i);
 }

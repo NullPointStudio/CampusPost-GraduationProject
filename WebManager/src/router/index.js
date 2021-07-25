@@ -9,6 +9,7 @@ import ViewsNum from '@/components/manage/ViewsNum'
 import ClassManager from '@/components/manage/ClassManager'
 import DormitoryManager from '@/components/manage/DormitoryManager'
 import DormitoryDistribution from '@/components/manage/DormitoryDistribution'
+import ClassDistribution from '@/components/manage/ClassDistribution'
 
 Vue.use(VueRouter)
 
@@ -44,6 +45,9 @@ const routes = [
         }, {
           path: '/dormitoryDistribution',
           component: DormitoryDistribution
+        }, {
+          path: '/classDistribution',
+          component: ClassDistribution
         }, {
           path: '/viewsNum',
           component: ViewsNum
