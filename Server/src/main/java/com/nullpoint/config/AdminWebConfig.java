@@ -21,7 +21,10 @@ public class AdminWebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(tokenInterceptor)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/account/login","/account/adminLogin");
+                .excludePathPatterns("/account/login",
+                        "/account/adminLogin",
+                        "/mqtt/**",
+                        "/mqttTest/**");
     }
 
     /**

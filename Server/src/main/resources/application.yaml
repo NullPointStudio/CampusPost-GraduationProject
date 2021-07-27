@@ -14,10 +14,14 @@ spring:
     resources:
       add-mappings: false
   redis:
-    host: 192.168.74.134
+    host: 127.0.0.1
     port: 6379
     password: 174878
 #    url: redis://root:174878@192.168.74.134:6379
 server:
   port: 8181
-
+mqtt:
+  brokerUrl: tcp://127.0.0.1:1883
+  clientId: SpringBoot-EMQ-Client1
+  username: SpringBoot
+  password: 123456
