@@ -47,9 +47,32 @@
 				uni.setStorageSync('token','')
 				uni.setStorageSync('userId','')
 			},
+			// 获取用户信息
 			getUserInfo(){
 				if(uni.getStorageSync('token')=== '' || uni.getStorageSync('token') === null){
-					
+					console.log("用户未登录")
+				}else {
+					if(uni.getStorageSync("isTeacher")===0){
+						//获取学生信息
+						uni.request({
+						    url: this.$api + '/student/getStudentByAccountId', //仅为示例，并非真实接口地址。
+							method:"GET",
+						    data: {
+						        account_id: uni.getStorageSync("userId")
+						    },
+						    header: {
+						        'Authorization': uni.getStorageSync('token') //自定义请求头信息
+						    },
+						    success: (res) => {
+						        console.log(res.data);
+						        this.text = '获取学生信息';
+								this.username = res.data.data.username
+								this.classname = res.data.data.class_name
+						    }
+						});
+					}else{
+						//获取教师信息
+					}
 				}
 			}
 		},
@@ -99,7 +122,6 @@
 		width: 50%;
 		height: 100%;
 		text-align: center;
-		margin-top: 5%;
 	}
 
 	#mine_avatar {

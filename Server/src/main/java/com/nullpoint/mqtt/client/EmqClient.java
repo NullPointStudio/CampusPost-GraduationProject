@@ -36,13 +36,7 @@ public class EmqClient {
         }
     }
 
-    /**
-     * 客户端连接MQTT服务器的方法
-     *
-     * @param username 连接的用户名
-     * @param password 连接的密码
-     */
-    public void connect(String username, String password) {
+    public void connect(String username, String password,MqttCallback mqttCallback){
         MqttConnectOptions options = new MqttConnectOptions();
         // 自动重连
         options.setAutomaticReconnect(true);
@@ -60,6 +54,16 @@ public class EmqClient {
         } catch (MqttException e) {
             log.error("MQTT客户端连接失败：username = {}，password = {},error = {}", username, password, e.getMessage());
         }
+    }
+
+    /**
+     * 客户端连接MQTT服务器的方法
+     *
+     * @param username 连接的用户名
+     * @param password 连接的密码
+     */
+    public void connect(String username, String password) {
+        this.connect(username, password,mqttCallback);
     }
 
     /**

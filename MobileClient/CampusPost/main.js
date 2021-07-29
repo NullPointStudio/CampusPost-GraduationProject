@@ -8,7 +8,7 @@ const vuexStore = require('@/store/$u.mixin.js') // 引入uView提供的对vuex�
 import defaultConfig from '@/config/config'
 import vtool from '@/utils/index'
 import jwx from '@/utils/jwx.js'
-import { upload } from '@/api/common/file'
+import {upload} from '@/api/common/file'
 
 Vue.use(uView)
 Vue.mixin(vuexStore)
@@ -17,15 +17,15 @@ Vue.prototype.$dy_config = defaultConfig
 Vue.prototype.$dy_tool = vtool
 Vue.prototype.$jwx = jwx
 Vue.prototype.$dy_upload = upload
-Vue.prototype.$api='http://127.0.0.1:8181'
+Vue.prototype.$api = 'http://127.0.0.1:8181'
 
 Vue.config.productionTip = false
 
 App.mpType = 'app'
 
 const app = new Vue({
-  store,
-  ...App
+	store,
+	...App
 })
 
 // http拦截器，将此部分放在new Vue()和app.$mount()之间，才能App.vue中正常使用，参考：http://www.uviewui.com/js/http.html

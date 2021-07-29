@@ -7,6 +7,7 @@
 			<u-form-item>
 				<u-input v-model="login_form.password" type="password" placeholder="密码" />
 			</u-form-item>
+			<u-subsection class="subsection" :list="list" :current="current"></u-subsection>
 			<u-button type="success" @click="login_click()">登录</u-button>
 		</u-form>
 	</view>
@@ -19,7 +20,15 @@
 				login_form: {
 					phone: '',
 					password: ''
-				}
+				},
+				list: [{
+						name: '学生'
+					},
+					{
+						name: '教师'
+					}
+				],
+				current: 0
 			}
 		},
 		methods: {
@@ -36,6 +45,7 @@
 						if (res.data.code === 200) {
 							uni.setStorageSync('token', res.data.token)
 							uni.setStorageSync('userId', res.data.userId)
+							uni.setStorageSync("isTeacher",this.current)
 							uni.showToast({
 								title: res.data.msg,
 								icon: 'success',
@@ -67,6 +77,9 @@
 
 <style scoped>
 	.login_view {
+		padding: 20rpx;
+	}
+	.subsection {
 		padding: 20rpx;
 	}
 </style>

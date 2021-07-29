@@ -34,7 +34,6 @@ image {
 	width: 50%;
 	height: 100%;
 	text-align: center;
-	margin-top: 5%;
 }
 #mine_avatar {
 	width: 50%;

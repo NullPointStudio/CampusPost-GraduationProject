@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
@@ -21,10 +22,12 @@ public class AdminWebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(tokenInterceptor)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/account/login",
+                .excludePathPatterns("/account/test",
                         "/account/adminLogin",
+                        "/account//loginByPhone",
                         "/mqtt/**",
-                        "/mqttTest/**");
+                        "/mqttTest/**",
+                        "/static/**");
     }
 
     /**
@@ -39,5 +42,16 @@ public class AdminWebConfig implements WebMvcConfigurer {
                 .allowedMethods("*")
                 .allowedHeaders("*")
                 .exposedHeaders("*");
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        registry.addResourceHandler("/**")
+//                .addResourceLocations("static/")
+//                .addResourceLocations("classpath:static/")
+//                .addResourceLocations("file:///tmp/webapps/");
+        registry.addResourceHandler("/static/**")
+                .addResourceLocations("classpath:/static/")
+                .addResourceLocations("static/");
     }
 }

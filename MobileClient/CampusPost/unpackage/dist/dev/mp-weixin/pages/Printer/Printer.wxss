@@ -1,0 +1,20 @@
+
+.title {
+	margin-left: 20rpx;
+}
+.block {
+	background-color: #00aaff;
+	height: 20rxp;
+	/* width: 5rpx; */
+	padding-left: 15rpx;
+}
+.printBody {
+	padding: 20rpx;
+}
+.btns {
+	margin: 20rpx;
+}
+.filenameView{
+	margin-top: 20rpx;
+}
+

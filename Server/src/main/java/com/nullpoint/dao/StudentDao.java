@@ -37,7 +37,10 @@ public interface StudentDao {
                       @Param("college_id")Integer college_id,
                       @Param("phone")String phone);
 
-    @Select("select * from students where account_id = #{id}")
+    @Select("select * from students s " +
+            "LEFT JOIN dormitory d on s.dormitory_id = d.id" +
+            " LEFT JOIN college_classes cc on s.college_class_id = cc.class_id" +
+            " where s.account_id = #{id}")
     Student findByAccountId(String id);
 
     @Delete("delete from students where account_id = #{id}")

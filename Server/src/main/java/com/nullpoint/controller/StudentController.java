@@ -32,6 +32,13 @@ public class StudentController {
     @Autowired
     AccountService accountService;
 
+    /**
+     * 获取学生列表
+     * @param query
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
     @RequestMapping(value = "getStudentList",method = RequestMethod.GET)
     public ModelAndView getTeacherList(@RequestParam(defaultValue = "") String query,
                                         @RequestParam(defaultValue = "1") int pageNum,
@@ -44,6 +51,12 @@ public class StudentController {
         return mv;
     }
 
+    /**
+     * 添加学生
+     * @param map
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "addStudentByAdmin",method = RequestMethod.POST)
     public ModelAndView addStudentByAdmin(@RequestBody Map<String,Object> map) throws Exception {
         ModelAndView mv = MVUtils.getJsonMV();
@@ -57,6 +70,11 @@ public class StudentController {
         return mv;
     }
 
+    /**
+     * 修改学生信息
+     * @param map
+     * @return
+     */
     @RequestMapping(value = "editStudentByAdmin",method = RequestMethod.POST)
     public ModelAndView editStudentByAdmin(@RequestBody Map<String,Object> map){
         ModelAndView mv = MVUtils.getJsonMV();
@@ -71,6 +89,11 @@ public class StudentController {
         return mv;
     }
 
+    /**
+     * 根据Id删除学生
+     * @param map
+     * @return
+     */
     @RequestMapping(value = "deleteStudent",method = RequestMethod.POST)
     public ModelAndView deleteStudent(@RequestBody Map<String,Object> map){
         ModelAndView mv = MVUtils.getJsonMV();

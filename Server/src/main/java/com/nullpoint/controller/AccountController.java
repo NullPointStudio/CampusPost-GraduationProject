@@ -40,6 +40,11 @@ public class AccountController {
         return token;
     }
 
+    /**
+     * UniApp中用户登录
+     * @param map
+     * @return
+     */
     @RequestMapping(value = "/loginByPhone",method = RequestMethod.POST)
     public ModelAndView loginByPhone(@RequestBody Map<String,Object> map){
         ModelAndView mv = MVUtils.getJsonMV();
@@ -60,6 +65,11 @@ public class AccountController {
         return mv;
     }
 
+    /**
+     * 管理员登录
+     * @param map
+     * @return
+     */
     @RequestMapping(value = "/adminLogin",method = RequestMethod.POST)
     public ModelAndView adminLogin(@RequestBody Map<String,Object> map){
         ModelAndView mv = MVUtils.getJsonMV();

@@ -2,4 +2,7 @@
 .login_view.data-v-3a2da0cc {
 	padding: 20rpx;
 }
+.subsection.data-v-3a2da0cc {
+	padding: 20rpx;
+}
 

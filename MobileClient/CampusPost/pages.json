@@ -27,7 +27,16 @@
 				"navigationBarTitleText": "登录"
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/Printer/Printer",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
