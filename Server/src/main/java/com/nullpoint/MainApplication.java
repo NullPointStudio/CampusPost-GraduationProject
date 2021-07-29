@@ -20,30 +20,4 @@ public class MainApplication {
     public static void main(String[] args) {
         SpringApplication.run(MainApplication.class,args);
     }
-//    @Autowired
-//    EmqClient emqClient;
-//
-//    @Autowired
-//    MqttProperties mqttProperties;
-//
-//    public static void init(){
-//        // 连接服务端
-//        emqClient.connect(mqttProperties.getUsername(),mqttProperties.getPassword());
-//        // 订阅主题
-//        emqClient.subscribe("/SpringBootTopic/#", QosEnum.QoS2);
-//        // 开启新线程 每隔5秒去/SpringBootTopic/test发布消息
-//        new Thread(() -> {
-//            while (true){
-//                emqClient.publish("/SpringBootTopic/test",
-//                        "MSG:"+ LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME),
-//                        QosEnum.QoS2,
-//                        false);
-//                try {
-//                    TimeUnit.SECONDS.sleep(5);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
-//    }
 }

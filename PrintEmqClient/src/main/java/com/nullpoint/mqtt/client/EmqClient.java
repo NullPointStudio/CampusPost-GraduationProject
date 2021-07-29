@@ -1,24 +1,33 @@
 package com.nullpoint.mqtt.client;
 
 import com.nullpoint.mqtt.enums.QosEnum;
+import lombok.extern.slf4j.Slf4j;
 import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.nio.charset.StandardCharsets;
 
+@Slf4j
+@Component
 public class EmqClient {
 
     private IMqttClient mqttClient;
 
     private final MqttCallback mqttCallback = new MessageCallBack();
 
-    public EmqClient() {
+    @PostConstruct
+    public void init() {
+        log.info("EmqClient开始初始化");
         MqttClientPersistence mempersitence = new MemoryPersistence();
-
         try {
             mqttClient = new MqttClient("tcp://127.0.0.1:1883", "printEmqClient", mempersitence);
+            connect("PrintEmqClient","123456");
+            subscribe("/printClient/#", QosEnum.QoS2);
+            log.info("订阅成功");
         } catch (MqttException e) {
-            System.out.println("初始化客户端MQTT-Client失败，ErrorMsg = "+e.getMessage());
+            log.error("初始化客户端MQTT-Client失败,ErrorMsg = {}", e.getMessage());
         }
     }
 
@@ -44,7 +53,7 @@ public class EmqClient {
         try {
             mqttClient.connect(options);
         } catch (MqttException e) {
-            System.out.println("MQTT客户端连接失败：error = "+ e.getMessage());
+            log.error("MQTT客户端连接失败：error = "+ e.getMessage());
         }
     }
 
@@ -55,7 +64,7 @@ public class EmqClient {
         try {
             mqttClient.disconnect();
         } catch (MqttException e) {
-            System.out.println("MQTT客户端断开连接出现异常：" + e.getMessage());
+            log.error("MQTT客户端断开连接出现异常：" + e.getMessage());
         }
     }
 
@@ -65,8 +74,9 @@ public class EmqClient {
     public void reConnect() {
         try {
             mqttClient.reconnect();
+            log.error("MQTT客户端重连成功");
         } catch (MqttException e) {
-            System.out.println("MQTT客户端重连失败：" + e.getMessage());
+            log.error("MQTT客户端重连失败：" + e.getMessage());
         }
     }
 
@@ -86,7 +96,7 @@ public class EmqClient {
         try {
             mqttClient.publish(topic, mqttMessage);
         } catch (MqttException e) {
-            System.out.println("MQTT客户端发布消息失败：ErrorMsg = {}"+e.getMessage());
+            log.error("MQTT客户端发布消息失败：ErrorMsg = {}"+e.getMessage());
         }
     }
 
@@ -100,7 +110,7 @@ public class EmqClient {
         try {
             mqttClient.subscribe(topicFilter, qos.value());
         } catch (MqttException e) {
-            System.out.println("订阅主题失败：topicFilter={}，qos={},ErrorMsg="+e.getMessage());
+            log.error("订阅主题失败：topicFilter={}，qos={},ErrorMsg="+e.getMessage());
         }
     }
 
@@ -113,7 +123,7 @@ public class EmqClient {
         try {
             mqttClient.unsubscribe(topicFilter);
         } catch (MqttException e) {
-            System.out.println("取消订阅主题失败：topicFilter={}，ErrorMsg={}"+e.getMessage());
+            log.error("取消订阅主题失败：topicFilter={}，ErrorMsg={}"+e.getMessage());
         }
     }
 }

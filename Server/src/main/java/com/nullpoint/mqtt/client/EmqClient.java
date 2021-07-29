@@ -37,6 +37,7 @@ public class EmqClient {
     }
 
     public void connect(String username, String password,MqttCallback mqttCallback){
+        if (isConnect()) return;
         MqttConnectOptions options = new MqttConnectOptions();
         // 自动重连
         options.setAutomaticReconnect(true);
@@ -67,10 +68,19 @@ public class EmqClient {
     }
 
     /**
+     * 判断是否已经连接
+     * @return
+     */
+    public boolean isConnect(){
+        return mqttClient.isConnected();
+    }
+
+    /**
      * 断开连接
      */
     @PreDestroy
     public void disConnect() {
+        if (!isConnect())return;
         try {
             mqttClient.disconnect();
         } catch (MqttException e) {

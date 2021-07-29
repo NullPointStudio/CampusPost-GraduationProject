@@ -76,7 +76,7 @@ public class PrintController {
             }
         });
         emqClient.publish("/printClient/123","/static/printFiles/"+filename, QosEnum.QoS2,false);
-        emqClient.disConnect();
+//        emqClient.disConnect();
         return new ResponseEntity(realPath+filename, HttpStatus.OK);
 
     }
