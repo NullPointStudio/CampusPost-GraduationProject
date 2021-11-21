@@ -1,5 +1,5 @@
 {
-    "name" : "uview-uni-cli",
+    "name" : "CampusPost",
     "appid" : "__UNI__3AA19A0",
     "description" : "",
     "versionName" : "1.0.1",
@@ -58,8 +58,7 @@
     "quickapp" : {},
     /* 快应用特有相关 */
     "mp-weixin" : {
-        /* 微信小程序特有相关 */
-        "appid" : "",
+        "appid" : "wx9865efc4adf4e114",
         "setting" : {
             "urlCheck" : false
         },

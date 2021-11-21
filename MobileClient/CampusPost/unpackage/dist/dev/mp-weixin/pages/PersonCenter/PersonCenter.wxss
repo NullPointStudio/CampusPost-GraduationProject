@@ -1,9 +1,9 @@
 
-#username{
+#username {
 	font-size: 40rpx;
 	font-weight: bold;
 }
-#classname{
+#classname {
 	font-size: 24rpx;
 }
 image {
@@ -18,7 +18,8 @@ image {
 	padding-bottom: 50rpx;
 	width: 100%;
 	height: auto;
-	background-color: #FFFFCC;
+	/* background-color: #66CCFF; */
+	background-color: #ffffff;
 	text-align: center;
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -26,6 +27,8 @@ image {
 	-webkit-box-pack: justify;
 	-webkit-justify-content: space-between;
 	        justify-content: space-between;
+	-webkit-box-shadow: #000000;
+	        box-shadow: #000000;
 }
 .exit_btn {
 	padding: 20rpx;

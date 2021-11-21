@@ -21,4 +21,8 @@ export default {
 <style lang="scss">
 	@import "uview-ui/index.scss";
 	/*每个页面公共css */
+	page{
+		background: #fff;
+		height: 100%;
+	}
 </style>

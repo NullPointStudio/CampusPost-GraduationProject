@@ -22,5 +22,6 @@ public class MainTest {
 
     @Test
     public void test1() throws NoSuchAlgorithmException {
+        System.out.println(MD5Utils.getMd5val("123456"+"MQTT"));
     }
 }

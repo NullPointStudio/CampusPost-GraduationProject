@@ -5,6 +5,7 @@ import com.nullpoint.utils.MD5Utils;
 import com.nullpoint.utils.MVUtils;
 import com.nullpoint.utils.TextUtils;
 import io.netty.util.internal.StringUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,10 +36,12 @@ public class MQTTAuthController {
         String value = mqttUserService.getPassword(username);
         if (TextUtils.isEmpty(value)){
             // 本来应该返回ignore，进行下种方法验证
+            log.error("用户名为null");
             return new ResponseEntity(HttpStatus.UNAUTHORIZED);
         }
         String myPass = MD5Utils.getMd5val(password+"MQTT");
         if (!value.equals(myPass)){
+            log.error("密码不正确");
             log.info("value:"+value);
             log.info("password:"+myPass);
             return new ResponseEntity(HttpStatus.UNAUTHORIZED);

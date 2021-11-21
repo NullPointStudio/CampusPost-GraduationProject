@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "首页",
+  "navigationBarTitleText": "校园驿站",
   "usingComponents": {
     "u-swiper": "/uview-ui/components/u-swiper/u-swiper",
     "u-grid": "/uview-ui/components/u-grid/u-grid",

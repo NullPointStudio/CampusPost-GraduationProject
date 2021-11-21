@@ -35,7 +35,7 @@ public class AccountController {
         redisTemplate.expire(username, Duration.ofSeconds(CommonUtil.TOKEN_EXPIRE_TIME));
 
         operations.set(token,username);
-        redisTemplate.expire(token,Duration.ofSeconds(CommonUtil.TOKEN_EXPIRE_TIME));
+        redisTemplate.expire(token, Duration.ofSeconds(CommonUtil.TOKEN_EXPIRE_TIME));
 
         return token;
     }

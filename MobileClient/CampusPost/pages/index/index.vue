@@ -17,10 +17,10 @@
 		<u-grid :col="4" @click="click">
 			<u-grid-item v-for="(item,index) in service" :index="index">
 				<!-- <u-icon :name="item.iconname" :size="46"></u-icon> -->
-				<image class="img1" :src="item.iconsrc"></image>
+				<image class="img1" :src="item.iconsrc" size="32"></image>
 				<view class="grid-text">{{item.text}}</view>
 			</u-grid-item>
-		</u-grid>		
+		</u-grid>
 	</scroll-view>
 </template>
 
@@ -63,9 +63,47 @@
 			}
 		},
 		onLoad() {
-
+			console.log("---->")
+			this.toLogin()
 		},
 		methods: {
+			toLogin() {
+				if (uni.getStorageSync('token') === '' || uni.getStorageSync('token') === null) {
+					uni.navigateTo({
+						url: '/pages/UserLogin/UserLogin',
+					})
+				} else {
+					// uni.request({
+					// 	url: this.$api + '/account/test', //仅为示例，并非真实接口地址。
+					// 	method: "GET",
+					// 	header: {
+					// 		'Authorization': uni.getStorageSync('token') //自定义请求头信息
+					// 	},
+					// 	success: (res) => {
+					// 		console.log("测试请求")
+					// 		console.log(res.data.code !== 200);
+					// 		if (res.data.code !== 200) {
+					// 			uni.navigateTo({
+					// 				url: '/pages/UserLogin/UserLogin',
+					// 			})
+					// 		}
+					// 	}
+					// })
+					uni.request({
+						url: this.$api+'/account/test',
+						method: 'GET',
+						success: (res) => {
+							console.log("请求成功")	
+							console.log(res.data)
+							if(res.data.code === 200){
+								console.log("测试成功")
+							}else{
+								console.log("测试失败，错误信息："+res.data.msg)
+							}
+						}
+					})
+				}
+			},
 			click(index) {
 				uni.navigateTo({
 					url: this.service[index].path
@@ -76,10 +114,11 @@
 </script>
 
 <style>
-	.img1{
+	.img1 {
 		width: 46rpx;
 		height: 46rpx;
 	}
+
 	.grid-text {
 		font-size: 20rpx;
 		margin-top: 4rpx;

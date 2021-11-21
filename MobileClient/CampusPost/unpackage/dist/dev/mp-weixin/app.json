@@ -3,14 +3,17 @@
     "pages/index/index",
     "pages/MyClass/MyClass",
     "pages/PersonCenter/PersonCenter",
-    "pages/Login/Login",
-    "pages/Printer/Printer"
+    "pages/Printer/Printer",
+    "pages/MyDormitory/MyDormitory",
+    "pages/MyDevices/MyDevices",
+    "pages/center/center",
+    "pages/center/user/user",
+    "pages/UserLogin/UserLogin"
   ],
   "subPackages": [],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "uni-app",
-    "navigationBarBackgroundColor": "#FFFFCC",
+    "navigationBarBackgroundColor": "#ffffff",
     "backgroundColor": "#F8F8F8",
     "enablePullDownRefresh": true
   },
@@ -20,22 +23,23 @@
         "pagePath": "pages/index/index",
         "text": "主页",
         "iconPath": "static/tabBar/icon/home.png",
-        "selectedIconPath": "static/tabBar/icon/home-selected.png"
+        "selectedIconPath": "static/tabBar/icon/select_home.png"
       },
       {
-        "pagePath": "pages/MyClass/MyClass",
-        "text": "我的课堂",
-        "iconPath": "static/tabBar/icon/book.png",
-        "selectedIconPath": "static/tabBar/icon/book-selected.png"
+        "pagePath": "pages/MyDevices/MyDevices",
+        "text": "我的设备",
+        "iconPath": "static/tabBar/icon/devices.png",
+        "selectedIconPath": "static/tabBar/icon/select_devices.png"
       },
       {
-        "pagePath": "pages/PersonCenter/PersonCenter",
+        "pagePath": "pages/center/center",
         "text": "Mine",
         "iconPath": "static/tabBar/icon/user.png",
-        "selectedIconPath": "static/tabBar/icon/user-selected.png"
+        "selectedIconPath": "static/tabBar/icon/select_user.png"
       }
     ],
-    "selectedColor": "#FFCCCC",
+    "color": "#999999",
+    "selectedColor": "#000000",
     "blurEffect": "light"
   },
   "uniStatistics": {

@@ -1,34 +1,65 @@
 {
 	"easycom": {
-		 "^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
 	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "首页",
+				"navigationBarTitleText": "校园驿站",
 				"navigationBarShadow": {
 					"colorType": "grey"
 				}
 			}
-		},{
+		}, {
 			"path": "pages/MyClass/MyClass",
 			"style": {
 				"navigationBarTitleText": "我的课堂"
 			}
-		},{
+		}, {
 			"path": "pages/PersonCenter/PersonCenter",
 			"style": {
-				"navigationBarTitleText": "Mine"
+				"navigationBarTitleText": ""
 			}
-		},{
-			"path": "pages/Login/Login",
+		}, {
+			"path": "pages/Printer/Printer",
 			"style": {
-				"navigationBarTitleText": "登录"
+				"navigationBarTitleText": "打印机",
+				"enablePullDownRefresh": false
 			}
-		}
-	    ,{
-            "path" : "pages/Printer/Printer",
+
+		}, {
+			"path": "pages/MyDormitory/MyDormitory",
+			"style": {
+				"navigationBarTitleText": "我的宿舍",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/MyDevices/MyDevices",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/center/center",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "个人中心"
+			}
+		},
+		{
+			"path": "pages/center/user/user",
+			"style": {
+				// #ifdef H5
+				"navigationStyle": "custom",
+				// #endif
+				"navigationBarTitleText": "我的首页"
+			}
+		},
+		{
+            "path" : "pages/UserLogin/UserLogin",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
@@ -39,33 +70,32 @@
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#FFFFCC",
+		"navigationBarBackgroundColor": "#ffffff",
 		"backgroundColor": "#F8F8F8",
 		"enablePullDownRefresh": true
 	},
 	"tabBar": {
-		"list": [
-			{
-				"pagePath":"pages/index/index",
-				"text":"主页",
-				"iconPath":"static/tabBar/icon/home.png",
-				"selectedIconPath":"static/tabBar/icon/home-selected.png"
+		"list": [{
+				"pagePath": "pages/index/index",
+				"text": "主页",
+				"iconPath": "static/tabBar/icon/home.png",
+				"selectedIconPath": "static/tabBar/icon/select_home.png"
 			},
 			{
-				"pagePath": "pages/MyClass/MyClass",
-				"text":"我的课堂",
-				"iconPath":"static/tabBar/icon/book.png",
-				"selectedIconPath":"static/tabBar/icon/book-selected.png"
+				"pagePath": "pages/MyDevices/MyDevices",
+				"text": "我的设备",
+				"iconPath": "static/tabBar/icon/devices.png",
+				"selectedIconPath": "static/tabBar/icon/select_devices.png"
 			},
 			{
-				"pagePath": "pages/PersonCenter/PersonCenter",
-				"text":"Mine",
-				"iconPath":"static/tabBar/icon/user.png",
-				"selectedIconPath":"static/tabBar/icon/user-selected.png"
+				"pagePath": "pages/center/center",
+				"text": "Mine",
+				"iconPath": "static/tabBar/icon/user.png",
+				"selectedIconPath": "static/tabBar/icon/select_user.png"
 			}
 		],
-		"selectedColor": "#FFCCCC",
+		"color": "#999999",
+		"selectedColor": "#000000",
 		"blurEffect": "light"
 	}
 }

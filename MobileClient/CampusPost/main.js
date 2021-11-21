@@ -17,7 +17,7 @@ Vue.prototype.$dy_config = defaultConfig
 Vue.prototype.$dy_tool = vtool
 Vue.prototype.$jwx = jwx
 Vue.prototype.$dy_upload = upload
-Vue.prototype.$api = 'http://127.0.0.1:8181'
+Vue.prototype.$api = 'http://192.168.0.105:8181'
 
 Vue.config.productionTip = false
 

@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "",
+  "navigationBarTitleText": "打印机",
   "enablePullDownRefresh": false,
   "usingComponents": {
     "u-dropdown": "/uview-ui/components/u-dropdown/u-dropdown",

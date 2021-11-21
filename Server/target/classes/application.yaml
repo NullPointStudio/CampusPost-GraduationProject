@@ -4,7 +4,7 @@ mybatis:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/campuspost?serverTimezone=UTC
+    url: jdbc:mysql://nullpoint.com.cn:3306/campuspost?serverTimezone=UTC
     username: root
     password: 174878
   #两个设置让自定义ExceptionHandler生效
@@ -14,14 +14,14 @@ spring:
     resources:
       add-mappings: false
   redis:
-    host: 127.0.0.1
-    port: 6379
+    host: nullpoint.com.cn
+    port: 6380
     password: 174878
 #    url: redis://root:174878@192.168.74.134:6379
 server:
   port: 8181
 mqtt:
-  brokerUrl: tcp://127.0.0.1:1883
+  brokerUrl: tcp://nullpoint.com.cn:1883
   clientId: SpringBoot-EMQ-Client1
   username: SpringBoot
   password: 123456

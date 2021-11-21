@@ -22,7 +22,7 @@ public class AdminWebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(tokenInterceptor)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/account/test",
+                .excludePathPatterns(
                         "/account/adminLogin",
                         "/account//loginByPhone",
                         "/mqtt/**",
@@ -44,12 +44,13 @@ public class AdminWebConfig implements WebMvcConfigurer {
                 .exposedHeaders("*");
     }
 
+    /**
+     * 设置静态资源路径
+     * 解决请求静态资源被拦截问题
+     * @param registry
+     */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        registry.addResourceHandler("/**")
-//                .addResourceLocations("static/")
-//                .addResourceLocations("classpath:static/")
-//                .addResourceLocations("file:///tmp/webapps/");
         registry.addResourceHandler("/static/**")
                 .addResourceLocations("classpath:/static/")
                 .addResourceLocations("static/");

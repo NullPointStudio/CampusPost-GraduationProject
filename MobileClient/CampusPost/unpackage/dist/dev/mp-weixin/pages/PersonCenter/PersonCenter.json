@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "Mine",
+  "navigationBarTitleText": "",
   "usingComponents": {
     "u-button": "/uview-ui/components/u-button/u-button"
   }

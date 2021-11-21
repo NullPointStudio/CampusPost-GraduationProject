@@ -68,24 +68,6 @@
 					success: function(res) {
 						self.MyFile = res
 						console.log("路径：",res.tempFiles[0].path)
-						// self.setData({
-						// 	[Myfile]: res.tempFilePaths
-						// })
-						// wx.uploadFile({
-						// 	url: this.$api + "/print/uploadFile",
-						// 	filePath: res.tempFilePaths[0],
-						// 	name: res.tempFiles.name,
-						// 	header: {
-						// 		'Authorization': uni.getStorageSync('token') //自定义请求头信息
-						// 	},
-						// 	success(res){
-						// 		console.log(res)
-						// 	},
-						// 	fail(res){
-						// 		console.log("上传失败")
-						// 		console.log(res)
-						// 	}
-						// })
 					}
 				})
 			},
